@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Pro Elite | Mansarovar, Jaipur</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#FACC15',
+                            500: '#EAB308',
+                            600: '#CA8A04',
+                            50: '#FEFCE8'
+                        },
+                        dark: {
+                            900: '#0B0F17',
+                            800: '#111827',
+                            700: '#1F2937',
+                            600: '#374151'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0B0F17; color: #F3F4F6; }
+        .hero-bg {
+            background: linear-gradient(to right, rgba(11, 15, 23, 0.92), rgba(11, 15, 23, 0.7)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .glow-gold {
+            box-shadow: 0 0 25px -5px rgba(234, 179, 8, 0.3);
+        }
+        .glow-gold-lg {
+            box-shadow: 0 0 50px -10px rgba(234, 179, 8, 0.4);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F17; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #EAB308; }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-100 antialiased selection:bg-gold-500 selection:text-dark-900">
+
+    <!-- Notification Banner / Top Bar -->
+    <div class="bg-gradient-to-r from-gold-600 via-gold-500 to-amber-600 text-dark-900 text-xs sm:text-sm font-bold py-2 px-4 text-center sticky top-0 z-50 shadow-md">
+        <i class="fa-solid fa-fire mr-2"></i> Limited Time Offer: Get 20% Off on Annual VIP Memberships & Free Personal Training Consultation! 
+        <a href="#contact" class="underline ml-2 hover:text-white transition">Claim Now &rarr;</a>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-dark-900/90 backdrop-blur-md sticky top-[37px] sm:top-[41px] z-40 border-b border-dark-700 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-gold-600 to-gold-400 flex items-center justify-center text-dark-900 font-black text-xl glow-gold">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl sm:text-2xl font-black tracking-wider uppercase text-white">Fitness Pro <span class="text-gold-500">Elite</span></span>
+                        <p class="text-[10px] text-gray-400 tracking-widest uppercase font-semibold">Mansarovar, Jaipur</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-gold-400 font-medium transition">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-gold-400 font-medium transition">About</a>
+                    <a href="#facilities" class="text-gray-300 hover:text-gold-400 font-medium transition">Facilities</a>
+                    <a href="#schedule" class="text-gray-300 hover:text-gold-400 font-medium transition">Schedule</a>
+                    <a href="#membership" class="text-gray-300 hover:text-gold-400 font-medium transition">Memberships</a>
+                    <a href="#reviews" class="text-gray-300 hover:text-gold-400 font-medium transition">Reviews</a>
+                    <a href="#contact" class="text-gray-300 hover:text-gold-400 font-medium transition">Contact</a>
+                </div>
+
+                <!-- Action Button -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="tel:09314455664" class="text-gray-300 hover:text-gold-400 font-semibold text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-gold-500"></i> 093144 55664
+                    </a>
+                    <button onclick="openModal('Free Trial')" class="bg-gold-500 hover:bg-gold-400 text-dark-900 font-bold px-5 py-2.5 rounded-xl transition duration-300 transform hover:-translate-y-0.5 glow-gold">
+                        Book Free Trial
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-800 border-b border-dark-700 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium py-2">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium py-2">About</a>
+            <a href="#facilities" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium py-2">Facilities</a>
+            <a href="#schedule" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium py-2">Schedule</a>
+            <a href="#membership" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium py-2">Memberships</a>
+            <a href="#reviews" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium py-2">Reviews</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium py-2">Contact</a>
+            <div class="pt-2 flex flex-col gap-3">
+                <a href="tel:09314455664" class="text-gold-400 font-bold flex items-center gap-2 py-1">
+                    <i class="fa-solid fa-phone"></i> 093144 55664
+                </a>
+                <button onclick="openModal('Free Trial'); toggleMobileMenu();" class="w-full bg-gold-500 hover:bg-gold-400 text-dark-900 font-bold py-3 rounded-xl text-center glow-gold">
+                    Book Free Trial
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-[90vh] flex items-center relative overflow-hidden pt-10 pb-20">
+        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-16">
+            <div class="max-w-3xl">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 bg-dark-800/80 border border-gold-500/30 px-4 py-2 rounded-full mb-6 backdrop-blur-md">
+                    <div class="flex text-gold-400">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-xs sm:text-sm font-bold text-gray-200">4.7 / 5.0 Rating (1,514+ Google Reviews)</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-none mb-6">
+                    TRANSFORM YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-amber-500">BODY & MIND</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-gray-300 font-normal mb-8 leading-relaxed max-w-2xl">
+                    Mansarovar's premier destination for fitness enthusiasts. "Outstanding trainers, well-maintained facility, and a motivating atmosphere" designed to unleash your absolute peak performance.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+                    <button onclick="openModal('Join Now')" class="bg-gold-500 hover:bg-gold-400 text-dark-900 font-extrabold px-8 py-4 rounded-xl text-center transition duration-300 shadow-lg glow-gold text-base">
+                        <i class="fa-solid fa-bolt mr-2"></i> Join Now
+                    </button>
+                    <button onclick="openModal('Free Trial')" class="bg-dark-800 hover:bg-dark-700 text-white border border-gold-500/50 hover:border-gold-500 font-bold px-8 py-4 rounded-xl text-center transition duration-300 text-base">
+                        <i class="fa-solid fa-calendar-check mr-2 text-gold-400"></i> Book Free Trial
+                    </button>
+                    <a href="#schedule" class="bg-transparent hover:bg-white/5 text-gray-300 hover:text-white font-semibold px-6 py-4 rounded-xl text-center transition duration-300 border border-gray-700 text-base flex items-center justify-center gap-2">
+                        View Schedule <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Quick Stats Footer -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 mt-16 pt-10 border-t border-gray-800/80">
+                    <div>
+                        <p class="text-3xl sm:text-4xl font-black text-white">1,500+</p>
+                        <p class="text-xs sm:text-sm text-gray-400 font-medium mt-1">Active Community</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl sm:text-4xl font-black text-gold-400">100%</p>
+                        <p class="text-xs sm:text-sm text-gray-400 font-medium mt-1">Certified Trainers</p>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <p class="text-3xl sm:text-4xl font-black text-white">6 AM - 10 PM</p>
+                        <p class="text-xs sm:text-sm text-gray-400 font-medium mt-1">Daily Operating Hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Location Info -->
+    <section id="about" class="py-24 bg-dark-800/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Text content -->
+                <div>
+                    <span class="text-gold-500 font-bold uppercase tracking-widest text-xs sm:text-sm">About Fitness Pro Elite</span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white mt-2 mb-6 leading-tight">
+                        Built for Elite Results in Mansarovar, Jaipur
+                    </h2>
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-6">
+                        Located near IPS School in Shanthi Nagar B, Mansarovar, Fitness Pro Elite stands out as Jaipur’s top-tier fitness haven. We combine state-of-the-art heavy-duty machinery, high-energy group fitness classes, and a secure, motivating environment.
+                    </p>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-8">
+                        Whether your goal is rapid fat loss, bodybuilding, strength conditioning, core stability, or rhythmic group workouts like Zumba and Pilates, our certified personal coaches guide you step-by-step.
+                    </p>
+
+                    <!-- Key highlights badges -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-3 bg-dark-800 p-4 rounded-xl border border-dark-700">
+                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-shield-halved text-lg"></i>
+                            </div>
+                            <span class="font-semibold text-sm text-gray-200">Safe & Secure Environment</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-dark-800 p-4 rounded-xl border border-dark-700">
+                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-dumbbell text-lg"></i>
+                            </div>
+                            <span class="font-semibold text-sm text-gray-200">Big Gym Quality Equipment</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-dark-800 p-4 rounded-xl border border-dark-700">
+                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-user-tie text-lg"></i>
+                            </div>
+                            <span class="font-semibold text-sm text-gray-200">Expert Certified Trainers</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-dark-800 p-4 rounded-xl border border-dark-700">
+                            <div class="w-10 h-10 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-water text-lg"></i>
+                            </div>
+                            <span class="font-semibold text-sm text-gray-200">Swimming Pool Access</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="openModal('Membership Inquiry')" class="bg-gold-500 hover:bg-gold-400 text-dark-900 font-bold px-6 py-3 rounded-xl transition shadow glow-gold">
+                            Explore Memberships
+                        </button>
+                        <a href="#contact" class="bg-dark-700 hover:bg-dark-600 text-white font-bold px-6 py-3 rounded-xl transition border border-gray-600 flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-gold-400"></i> Get Directions
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Cards / Image collage -->
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=600&q=80" alt="Gym Equipment" class="rounded-2xl object-cover h-64 w-full shadow-lg border border-dark-700">
+                            <div class="bg-gradient-to-tr from-dark-800 to-dark-700 p-6 rounded-2xl border border-gold-500/30 text-center">
+                                <p class="text-3xl font-black text-gold-400">4.7★</p>
+                                <p class="text-xs text-gray-300 font-medium mt-1">Google Rating across 1,500+ reviews</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4 pt-8">
+                            <div class="bg-dark-800 p-6 rounded-2xl border border-dark-700">
+                                <i class="fa-solid fa-clock text-gold-400 text-2xl mb-3"></i>
+                                <h4 class="font-bold text-white text-base">Open Daily</h4>
+                                <p class="text-xs text-gray-400 mt-1">6:00 AM – 10:00 PM</p>
+                                <p class="text-xs text-gold-500 font-semibold mt-2">Mon - Sun Open</p>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Zumba & Fitness" class="rounded-2xl object-cover h-64 w-full shadow-lg border border-dark-700">
+                        </div>
+                    </div>
+                    <!-- Absolute badge -->
+                    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-dark-900 border border-gold-500/50 px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+                        <i class="fa-solid fa-map-pin text-gold-500 text-xl"></i>
+                        <span class="text-xs sm:text-sm font-bold text-white">Mansarovar, Jaipur • Near IPS School</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="py-24 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold-500 font-bold uppercase tracking-widest text-xs sm:text-sm">World-Class Amenities</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-2 mb-4">Designed For Serious Fitness</h2>
+                <p class="text-gray-400 text-base sm:text-lg">Explore our top-tier facilities engineered to cater to beginners and professional athletes alike.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Facility 1 -->
+                <div class="bg-dark-800 rounded-2xl p-8 border border-dark-700 hover:border-gold-500/50 transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-dark-900 transition duration-300">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Heavy-Duty Equipment</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Imported resistance machines, bumper plates, power racks, and extensive dumbbell sets for optimal muscle hypertrophy.</p>
+                    <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-dark-700 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Olympic Lifting Platforms</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Ergonomic Cardio Deck</li>
+                    </ul>
+                </div>
+
+                <!-- Facility 2 -->
+                <div class="bg-dark-800 rounded-2xl p-8 border border-dark-700 hover:border-gold-500/50 transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-dark-900 transition duration-300">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Zumba & Aerobics Studio</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">High-energy rhythmic dance workouts led by certified instructors to torch calories while having an absolute blast.</p>
+                    <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-dark-700 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Professional Sound System</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Wooden Sprung Flooring</li>
+                    </ul>
+                </div>
+
+                <!-- Facility 3 -->
+                <div class="bg-dark-800 rounded-2xl p-8 border border-dark-700 hover:border-gold-500/50 transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-dark-900 transition duration-300">
+                        <i class="fa-solid fa-water-ladder"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Swimming Pool Access</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Crystal-clear swimming pool facility for refreshing aquatic cardio, endurance swimming, and post-workout relaxation.</p>
+                    <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-dark-700 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Hygienic & Filtered Water</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Professional Poolside Area</li>
+                    </ul>
+                </div>
+
+                <!-- Facility 4 -->
+                <div class="bg-dark-800 rounded-2xl p-8 border border-dark-700 hover:border-gold-500/50 transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-dark-900 transition duration-300">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Personal Training</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">1-on-1 expert guidance tailored precisely to your body composition, dietary requirements, and specific fitness milestones.</p>
+                    <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-dark-700 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Custom Diet Plans</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Weekly Body Composition Tracking</li>
+                    </ul>
+                </div>
+
+                <!-- Facility 5 -->
+                <div class="bg-dark-800 rounded-2xl p-8 border border-dark-700 hover:border-gold-500/50 transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-dark-900 transition duration-300">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Locker & Steam Rooms</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Secure electronic locker rooms, clean hygienic showers, and premium steam bath facilities to unwind after grueling sessions.</p>
+                    <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-dark-700 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Secure Digital Lockers</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Relaxing Steam Baths</li>
+                    </ul>
+                </div>
+
+                <!-- Facility 6 -->
+                <div class="bg-dark-800 rounded-2xl p-8 border border-dark-700 hover:border-gold-500/50 transition duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-dark-900 transition duration-300">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Safe & Motivating Vibe</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">A friendly, secure community environment with professional security and supportive fitness enthusiasts encouraging one another.</p>
+                    <ul class="space-y-2 text-xs text-gray-300 font-medium border-t border-dark-700 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> 24/7 CCTV Surveillance</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-gold-400"></i> Family & Ladies Friendly</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Class Schedule -->
+    <section id="schedule" class="py-24 bg-dark-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-gold-500 font-bold uppercase tracking-widest text-xs sm:text-sm">Dynamic Workouts</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-2 mb-4">Interactive Class Schedule</h2>
+                <p class="text-gray-400 text-base sm:text-lg">Filter classes by category to find your perfect session at Fitness Pro Elite.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button onclick="filterSchedule('all')" id="btn-all" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-gold-500 text-dark-900 transition shadow">All Classes</button>
+                <button onclick="filterSchedule('strength')" id="btn-strength" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-dark-800 text-gray-300 hover:text-white border border-dark-700 transition">Strength Training</button>
+                <button onclick="filterSchedule('zumba')" id="btn-zumba" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-dark-800 text-gray-300 hover:text-white border border-dark-700 transition">Zumba & Dance</button>
+                <button onclick="filterSchedule('pilates')" id="btn-pilates" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-dark-800 text-gray-300 hover:text-white border border-dark-700 transition">Pilates & Yoga</button>
+                <button onclick="filterSchedule('swimming')" id="btn-swimming" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-dark-800 text-gray-300 hover:text-white border border-dark-700 transition">Swimming</button>
+            </div>
+
+            <!-- Schedule Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="schedule-grid">
+                <!-- Card 1 -->
+                <div class="schedule-item bg-dark-800 border border-dark-700 rounded-2xl p-6 transition hover:border-gold-500/50" data-category="strength">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-amber-500/10 text-gold-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Strength Training</span>
+                        <span class="text-xs text-gray-400 font-semibold"><i class="fa-regular fa-clock mr-1 text-gold-500"></i> 07:00 AM - 08:00 AM</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Powerlifting & Core Conditioning</h3>
+                    <p class="text-gray-400 text-sm mb-4">Master compound lifts with expert trainers focusing on form, power, and stability.</p>
+                    <div class="flex items-center justify-between border-t border-dark-700 pt-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-dark-700 flex items-center justify-center font-bold text-xs text-gold-400">RJ</div>
+                            <span class="text-xs text-gray-300 font-medium">Coach Rahul J.</span>
+                        </div>
+                        <button onclick="openModal('Class: Powerlifting')" class="text-xs font-bold bg-gold-500/10 hover:bg-gold-500 hover:text-dark-900 text-gold-400 px-3 py-2 rounded-lg transition">Book Slot</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="schedule-item bg-dark-800 border border-dark-700 rounded-2xl p-6 transition hover:border-gold-500/50" data-category="zumba">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-amber-500/10 text-gold-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Zumba & Dance</span>
+                        <span class="text-xs text-gray-400 font-semibold"><i class="fa-regular fa-clock mr-1 text-gold-500"></i> 08:30 AM - 09:30 AM</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">High Energy Zumba Blast</h3>
+                    <p class="text-gray-400 text-sm mb-4">Dance your way to fitness with upbeat Bollywood & international Latin rhythms.</p>
+                    <div class="flex items-center justify-between border-t border-dark-700 pt-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-dark-700 flex items-center justify-center font-bold text-xs text-gold-400">PS</div>
+                            <span class="text-xs text-gray-300 font-medium">Coach Priya S.</span>
+                        </div>
+                        <button onclick="openModal('Class: Zumba Blast')" class="text-xs font-bold bg-gold-500/10 hover:bg-gold-500 hover:text-dark-900 text-gold-400 px-3 py-2 rounded-lg transition">Book Slot</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="schedule-item bg-dark-800 border border-dark-700 rounded-2xl p-6 transition hover:border-gold-500/50" data-category="pilates">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-amber-500/10 text-gold-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Pilates & Yoga</span>
+                        <span class="text-xs text-gray-400 font-semibold"><i class="fa-regular fa-clock mr-1 text-gold-500"></i> 05:00 PM - 06:00 PM</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Advanced Mat Pilates & Mobility</h3>
+                    <p class="text-gray-400 text-sm mb-4">Enhance core strength, flexibility, spine alignment, and overall joint posture.</p>
+                    <div class="flex items-center justify-between border-t border-dark-700 pt-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-dark-700 flex items-center justify-center font-bold text-xs text-gold-400">AK</div>
+                            <span class="text-xs text-gray-300 font-medium">Coach Amit K.</span>
+                        </div>
+                        <button onclick="openModal('Class: Mat Pilates')" class="text-xs font-bold bg-gold-500/10 hover:bg-gold-500 hover:text-dark-900 text-gold-400 px-3 py-2 rounded-lg transition">Book Slot</button>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="schedule-item bg-dark-800 border border-dark-700 rounded-2xl p-6 transition hover:border-gold-500/50" data-category="swimming">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-amber-500/10 text-gold-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Swimming</span>
+                        <span class="text-xs text-gray-400 font-semibold"><i class="fa-regular fa-clock mr-1 text-gold-500"></i> 06:30 PM - 07:30 PM</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Aquatic Endurance & Swimming</h3>
+                    <p class="text-gray-400 text-sm mb-4">Full body low-impact cardiovascular workout in our crystal clear pool.</p>
+                    <div class="flex items-center justify-between border-t border-dark-700 pt-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-dark-700 flex items-center justify-center font-bold text-xs text-gold-400">VM</div>
+                            <span class="text-xs text-gray-300 font-medium">Coach Vikram M.</span>
+                        </div>
+                        <button onclick="openModal('Class: Swimming')" class="text-xs font-bold bg-gold-500/10 hover:bg-gold-500 hover:text-dark-900 text-gold-400 px-3 py-2 rounded-lg transition">Book Slot</button>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="schedule-item bg-dark-800 border border-dark-700 rounded-2xl p-6 transition hover:border-gold-500/50" data-category="strength">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-amber-500/10 text-gold-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Strength Training</span>
+                        <span class="text-xs text-gray-400 font-semibold"><i class="fa-regular fa-clock mr-1 text-gold-500"></i> 07:30 PM - 08:30 PM</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">HIIT & Fat Loss Circuit</h3>
+                    <p class="text-gray-400 text-sm mb-4">High-intensity interval training designed to maximize calorie burn and endurance.</p>
+                    <div class="flex items-center justify-between border-t border-dark-700 pt-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-dark-700 flex items-center justify-center font-bold text-xs text-gold-400">RJ</div>
+                            <span class="text-xs text-gray-300 font-medium">Coach Rahul J.</span>
+                        </div>
+                        <button onclick="openModal('Class: HIIT Circuit')" class="text-xs font-bold bg-gold-500/10 hover:bg-gold-500 hover:text-dark-900 text-gold-400 px-3 py-2 rounded-lg transition">Book Slot</button>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="schedule-item bg-dark-800 border border-dark-700 rounded-2xl p-6 transition hover:border-gold-500/50" data-category="zumba">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-amber-500/10 text-gold-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Zumba & Dance</span>
+                        <span class="text-xs text-gray-400 font-semibold"><i class="fa-regular fa-clock mr-1 text-gold-500"></i> 08:00 PM - 09:00 PM</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Evening Dance Fitness</h3>
+                    <p class="text-gray-400 text-sm mb-4">Wind down your day with energetic dance choreography and vibrant music.</p>
+                    <div class="flex items-center justify-between border-t border-dark-700 pt-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-dark-700 flex items-center justify-center font-bold text-xs text-gold-400">PS</div>
+                            <span class="text-xs text-gray-300 font-medium">Coach Priya S.</span>
+                        </div>
+                        <button onclick="openModal('Class: Evening Dance')" class="text-xs font-bold bg-gold-500/10 hover:bg-gold-500 hover:text-dark-900 text-gold-400 px-3 py-2 rounded-lg transition">Book Slot</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Tiers Section -->
+    <section id="membership" class="py-24 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold-500 font-bold uppercase tracking-widest text-xs sm:text-sm">Invest In Yourself</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-2 mb-4">Flexible Membership Plans</h2>
+                <p class="text-gray-400 text-base sm:text-lg">Choose the right plan to unlock full access to gym equipment, swimming pool, and group classes.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <!-- Tier 1 -->
+                <div class="bg-dark-800 rounded-3xl p-8 border border-dark-700 flex flex-col justify-between transition hover:border-gold-500/40">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">Monthly Pass</span>
+                            <span class="bg-dark-700 text-gray-300 text-xs px-3 py-1 rounded-full font-semibold">Standard</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-4xl sm:text-5xl font-black text-white">₹2,499</span>
+                            <span class="text-gray-400 text-sm"> / month</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-6">Ideal for fitness seekers wanting short-term flexibility without long-term commitment.</p>
+                        <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> Full Gym Floor Access</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> Locker & Shower Facilities</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> 1 Fitness Assessment</li>
+                            <li class="flex items-center gap-3 text-gray-500"><i class="fa-solid fa-xmark"></i> Swimming Pool Access</li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('Membership: Monthly')" class="w-full bg-dark-700 hover:bg-dark-600 text-white font-bold py-3.5 rounded-xl transition border border-gray-600 text-center">
+                        Choose Monthly
+                    </button>
+                </div>
+
+                <!-- Tier 2 (Featured VIP) -->
+                <div class="bg-gradient-to-b from-dark-800 to-dark-700 rounded-3xl p-8 border-2 border-gold-500 flex flex-col justify-between relative shadow-2xl glow-gold transform md:-translate-y-4">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-dark-900 font-extrabold text-xs uppercase px-4 py-1.5 rounded-full tracking-widest shadow">
+                        Most Popular
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4 pt-2">
+                            <span class="text-sm font-bold text-gold-400 uppercase tracking-wider">Quarterly VIP</span>
+                            <span class="bg-gold-500/20 text-gold-300 text-xs px-3 py-1 rounded-full font-bold">Best Value</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-4xl sm:text-5xl font-black text-white">₹6,499</span>
+                            <span class="text-gray-400 text-sm"> / 3 months</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-6">Accelerate your progress with complete access to all studio classes and swimming pool.</p>
+                        <ul class="space-y-3 text-sm text-gray-200 mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> Full Gym Floor Access</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> Unlimited Zumba & Pilates</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> Swimming Pool Access</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> Steam Bath & Locker Access</li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('Membership: Quarterly VIP')" class="w-full bg-gold-500 hover:bg-gold-400 text-dark-900 font-black py-4 rounded-xl transition shadow glow-gold text-center">
+                        Get Quarterly VIP
+                    </button>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="bg-dark-800 rounded-3xl p-8 border border-dark-700 flex flex-col justify-between transition hover:border-gold-500/40">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">Annual Elite All-Access</span>
+                            <span class="bg-amber-500/10 text-gold-400 text-xs px-3 py-1 rounded-full font-semibold">Save 35%</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-4xl sm:text-5xl font-black text-white">₹18,999</span>
+                            <span class="text-gray-400 text-sm"> / year</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-6">The ultimate package for committed individuals seeking total lifestyle transformation.</p>
+                        <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> 12 Months Full Facility Access</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> All Zumba, Pilates & Yoga Classes</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> Swimming Pool & Steam Room</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-400"></i> 3 Free Personal Training Sessions</li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('Membership: Annual Elite')" class="w-full bg-dark-700 hover:bg-dark-600 text-white font-bold py-3.5 rounded-xl transition border border-gray-600 text-center">
+                        Choose Annual Elite
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real Reviews & Testimonials Section -->
+    <section id="reviews" class="py-24 bg-dark-800/50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-gold-500 font-bold uppercase tracking-widest text-xs sm:text-sm">Verified Experiences</span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white mt-2">What Our Members Say</h2>
+                </div>
+                <div class="mt-6 md:mt-0 flex items-center gap-4 bg-dark-800 p-4 rounded-2xl border border-dark-700">
+                    <div class="text-3xl font-black text-gold-400">4.7</div>
+                    <div>
+                        <div class="flex text-gold-400 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-0.5">Based on 1,514 Google Reviews</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-dark-800 rounded-3xl p-8 border border-dark-700 flex flex-col justify-between relative">
+                    <div class="absolute top-6 right-6 text-gold-500/20 text-4xl font-serif">“</div>
+                    <div>
+                        <div class="flex text-gold-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                            "Outstanding trainers, well-maintained facility, and a motivating atmosphere! The heavy equipment is top-notch and the Zumba sessions are so energizing. Highly recommend Fitness Pro Elite in Mansarovar!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-dark-700 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-gold-500 text-dark-900 font-bold flex items-center justify-center">MS</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Monika Saran</h4>
+                            <p class="text-xs text-gray-400">Google Local Guide • Verified Member</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-dark-800 rounded-3xl p-8 border border-dark-700 flex flex-col justify-between relative">
+                    <div class="absolute top-6 right-6 text-gold-500/20 text-4xl font-serif">“</div>
+                    <div>
+                        <div class="flex text-gold-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                            "One of the best gym setups in Jaipur. Big gym quality equipment, clean swimming pool, and very supportive staff. The trainers pay close attention to form and safety."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-dark-700 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-gold-500 text-dark-900 font-bold flex items-center justify-center">AC</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Ajit Choudhary</h4>
+                            <p class="text-xs text-gray-400">Verified Member</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-dark-800 rounded-3xl p-8 border border-dark-700 flex flex-col justify-between relative">
+                    <div class="absolute top-6 right-6 text-gold-500/20 text-4xl font-serif">“</div>
+                    <div>
+                        <div class="flex text-gold-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                            "Safe and secure environment with great parking and ventilation. Management is very responsive to feedback and keeps everything spotless. Hands down the best gym in Shanthi Nagar!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-dark-700 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-gold-500 text-dark-900 font-bold flex items-center justify-center">NS</div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Nisha Sharma</h4>
+                            <p class="text-xs text-gray-400">Verified Member</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact, Location & Free Trial Section -->
+    <section id="contact" class="py-24 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Left: Info & Map details -->
+                <div>
+                    <span class="text-gold-500 font-bold uppercase tracking-widest text-xs sm:text-sm">Get In Touch</span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white mt-2 mb-6">Visit Fitness Pro Elite Today</h2>
+                    <p class="text-gray-300 text-base mb-8 leading-relaxed">
+                        Ready to start your fitness journey? Drop by our facility in Mansarovar or give us a call to schedule your complimentary trial session.
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl shrink-0 mt-1">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Location Address</h4>
+                                <p class="text-gray-400 text-sm mt-1">Near IPS School, Shanthi Nagar B, Shanthi Nagar, Mansarovar, Jaipur, Rajasthan 302019</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl shrink-0 mt-1">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Phone Number</h4>
+                                <p class="text-gray-400 text-sm mt-1"><a href="tel:09314455664" class="hover:text-gold-400 transition font-semibold">093144 55664</a></p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl shrink-0 mt-1">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Operating Hours</h4>
+                                <p class="text-gray-400 text-sm mt-1">Monday – Sunday: 6:00 AM – 10:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Quick Lead Capture Form -->
+                <div class="bg-dark-800 rounded-3xl p-8 sm:p-10 border border-dark-700 shadow-2xl relative">
+                    <h3 class="text-2xl font-black text-white mb-2">Book Free Trial or Inquiry</h3>
+                    <p class="text-gray-400 text-sm mb-6">Fill out the form below and our fitness consultants will get in touch instantly.</p>
+
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Full Name</label>
+                            <input type="text" required placeholder="Enter your name" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Phone Number</label>
+                            <input type="tel" required placeholder="+91 98765 43210" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Interested Service</label>
+                            <select class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition">
+                                <option>Free Trial Session</option>
+                                <option>Strength Training / Gym Floor</option>
+                                <option>Zumba & Dance Classes</option>
+                                <option>Swimming Pool Access</option>
+                                <option>Personal Training Inquiry</option>
+                                <option>Annual VIP Membership</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Preferred Timing</label>
+                            <select class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition">
+                                <option>Morning (6:00 AM - 11:00 AM)</option>
+                                <option>Evening (4:00 PM - 10:00 PM)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-gold-500 hover:bg-gold-400 text-dark-900 font-extrabold py-4 rounded-xl transition shadow glow-gold mt-2 text-base">
+                            Submit Request Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 border-t border-dark-800 py-12 text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-gold-600 to-gold-400 flex items-center justify-center text-dark-900 font-black text-lg">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+                    <span class="text-xl font-black tracking-wider uppercase text-white">Fitness Pro <span class="text-gold-500">Elite</span></span>
+                </div>
+                <p class="text-xs text-gray-500 text-center md:text-left">
+                    &copy; 2026 Fitness Pro Elite, Mansarovar, Jaipur. All rights reserved. Built for elite fitness performance.
+                </p>
+                <div class="flex space-x-4 text-lg">
+                    <a href="#" class="w-10 h-10 rounded-xl bg-dark-800 hover:bg-gold-500 hover:text-dark-900 flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-dark-800 hover:bg-gold-500 hover:text-dark-900 flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-dark-800 hover:bg-gold-500 hover:text-dark-900 flex items-center justify-center transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Modal -->
+    <div id="booking-modal" class="fixed inset-0 bg-dark-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-dark-800 border border-dark-700 rounded-3xl max-w-md w-full p-8 relative shadow-2xl animate-fade-in">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-gold-500/10 text-gold-400 flex items-center justify-center text-2xl mx-auto mb-3 glow-gold">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 id="modal-title" class="text-2xl font-black text-white">Book Free Trial</h3>
+                <p class="text-gray-400 text-xs mt-1">Fitness Pro Elite • Mansarovar, Jaipur</p>
+            </div>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Your Full Name</label>
+                    <input type="text" required placeholder="Enter full name" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Mobile Number</label>
+                    <input type="tel" required placeholder="+91 98765 43210" class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Preferred Date</label>
+                    <input type="date" required class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-400 text-dark-900 font-extrabold py-4 rounded-xl transition shadow glow-gold text-base">
+                    Confirm Reservation
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message Box -->
+    <div id="message-box" class="fixed bottom-6 right-6 bg-gold-500 text-dark-900 font-bold px-6 py-4 rounded-2xl shadow-2xl z-50 transform translate-y-32 opacity-0 transition-all duration-300 flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-xl"></i>
+        <span id="message-text">Request submitted successfully! We will call you shortly.</span>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Schedule Filter Functionality
+        function filterSchedule(category) {
+            const items = document.querySelectorAll('.schedule-item');
+            const buttons = document.querySelectorAll('[id^="btn-"]');
+
+            // Update button styles
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-gold-500', 'text-dark-900');
+                btn.classList.add('bg-dark-800', 'text-gray-300', 'border', 'border-dark-700');
+            });
+
+            const activeBtn = document.getElementById(`btn-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-dark-800', 'text-gray-300', 'border', 'border-dark-700');
+                activeBtn.classList.add('bg-gold-500', 'text-dark-900');
+            }
+
+            // Filter items
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Management
+        function openModal(serviceName) {
+            const modal = document.getElementById('booking-modal');
+            const title = document.getElementById('modal-title');
+            title.textContent = `Book: ${serviceName}`;
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.add('hidden');
+        }
+
+        // Form Submission Handlers
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showNotification("Your inquiry has been submitted! Our team will contact you within 2 hours.");
+            e.target.reset();
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            closeModal();
+            showNotification("Reservation confirmed! See you at Fitness Pro Elite soon.");
+            e.target.reset();
+        }
+
+        // Notification Message Box
+        function showNotification(text) {
+            const box = document.getElementById('message-box');
+            const msg = document.getElementById('message-text');
+            msg.textContent = text;
+            box.classList.remove('translate-y-32', 'opacity-0');
+            box.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                box.classList.remove('translate-y-0', 'opacity-100');
+                box.classList.add('translate-y-32', 'opacity-0');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
